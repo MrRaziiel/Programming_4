@@ -28,7 +28,6 @@ def get_Asked_Value(question, type_of_value):
 
 flag = False
 
-
 while not flag:
     print("Form to add a new animal")
     print("To stop adding just write 'fim' whenever \n")
@@ -46,14 +45,32 @@ while not flag:
 print(f"The new dictionary is {animals} \n")
 
 while True:
-    print("Need to find an animal, write a name")
+    print("Need to find an animal? write a name of the animal")
     print("To stop adding just write 'fim' whenever")
     query = input()
     if query.lower() == 'fim':
         break
+
     if query in animals.keys():
         print(f"The animal {query} is a {animals[query]}\n")
     else:
         print(f"The animal {query} is not in dictionary, retry.\n")
+
+while True:
+    print("Need to find an animal? write the specie of animal")
+    print("To stop adding just write 'fim' whenever")
+    query = input()
+    if query.lower() == 'fim':
+        break
+
+    name_Got_From_Query = ""
+    for key, value in animals.items():
+        if value == query:
+            name_Got_From_Query = key
+
+    if name_Got_From_Query:
+        print(f"The name of {query} is {name_Got_From_Query}\n")
+    else:
+        print(f"The type of animal {query} is not in dictionary, retry.\n")
 
 print("GoodBye")
