@@ -45,11 +45,15 @@ if os.path.isfile(file_Path):
 
     try:
         text_Inside_File = str(file.read()).split('\n')
+
     except Exception as e:
         file.close()
         exit(f"Can't open the file \n {e}")
     finally:
         file.close()
+
+else:
+    exit("file doesn't exist")
 
 
 word_In_Array = get_Unique_Words(text_Inside_File)
