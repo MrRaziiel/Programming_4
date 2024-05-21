@@ -28,8 +28,8 @@ def get_Unique_Words(string_Entered):
 def format_Array_To_String(newText):
     text_To_Show = ""
     for line in newText:
-        helper = ' '.join(line)
-        text_To_Show += f" {helper} \n"
+        helper = ' '.join(line).lstrip(' ')
+        text_To_Show += f"{helper} \n"
     print(text_To_Show)
     return text_To_Show
 
