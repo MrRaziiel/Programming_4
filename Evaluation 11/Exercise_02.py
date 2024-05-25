@@ -8,22 +8,27 @@ a abertura do ficheiro.
 import os
 import string
 
+
 def remove_Punctuation(word):
     return word.translate(str.maketrans('', '', string.punctuation))
+
+
 def get_Unique_Words(string_Entered):
     newText = []
-    uniquesWords = {}
+    uniquesWords = []
+    uniquesWordsLower = []
     for line in text_Inside_File:
         newLine = []
         for word in line.split(" "):
             word_Without_Punctuation = remove_Punctuation(word)
-            if word_Without_Punctuation not in uniquesWords:
-                uniquesWords[word_Without_Punctuation] = 0
-            if uniquesWords[word_Without_Punctuation] == 0:
-                newLine.append(word)
-                uniquesWords[word_Without_Punctuation] = 1
+            if word_Without_Punctuation.lower() not in uniquesWordsLower:
+                if word_Without_Punctuation.lower() not in uniquesWordsLower:
+                    uniquesWordsLower.append(word_Without_Punctuation.lower())
+                    newLine.append(word)
+
         newText.append(newLine)
     return newText
+
 
 def format_Array_To_String(newText):
     text_To_Show = ""
@@ -55,7 +60,6 @@ if os.path.isfile(file_Path):
 else:
     exit("file doesn't exist")
 
-
 word_In_Array = get_Unique_Words(text_Inside_File)
 word_To_Show = format_Array_To_String(word_In_Array)
 
@@ -69,4 +73,3 @@ except Exception as e:
     exit(e)
 finally:
     file.close()
-
