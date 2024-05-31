@@ -19,7 +19,9 @@ def how_Many_Values_More_Than_20(_vector):
 def get_Asked_Value(question):
     print(question)
     input_From_User = input()
-    if not input_From_User.isdigit():
+    try:
+        input_From_User = float(input_From_User)
+    except:
         print(f"{input_From_User} It's not a number")
         input_From_User = get_Asked_Value(question)
 
