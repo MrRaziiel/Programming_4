@@ -84,8 +84,11 @@ class Employee:
             return False
         return True
 
+
     def is_valid_number(self, number):
         pattern = r'^-?\d+(\.\d+)?$'
+        if isinstance(number, int) or isinstance(number, float) :
+            return float(number)
         if bool(re.match(pattern, number)):
             floated = float(number)
             rounded = round(floated, 2)
