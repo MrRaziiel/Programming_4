@@ -14,9 +14,9 @@ Nota: utilizar exceções:
 
 import math
 
-operatorsValid = ['+', '-', '*', '/' '**']
+operatorsValid = ['+', '-', '*', '/', '**']
 
-print("Welcome to the calculator")
+print("\nWelcome to the calculator\n")
 
 
 def calculator(results=None):
@@ -31,23 +31,19 @@ def calculator(results=None):
     number_1 = singularsOperators(number_1)
 
     while True:
-        operator = inputExitOrRestart(input(f'''Number is {number_1}
-            You want apply any of :
-            + for Addiction
-            - for Substation
-            * for Multiplication 
-            / for Division
-            ** for Potential
-            
-            RESTART to restart
-            EXIT for exit
-            ''')).lower()
+        operator = (input(f''' \nNumber is {number_1} \nYou want apply any of : \n\t"+" for Addiction \n\t"-" for Substation \n\t"*" for Multiplication \n\t"/" for Division \n\t"**" for Potential \n\t"RESTART" to restart \n\t"EXIT" for exit\n\n INSERT:''')).lower()
+
+        print(operator)
+        inputExitOrRestart(operator)
 
         if operator in operatorsValid:
             break
 
     while True:
         number_2 = validateNumber(inputExitOrRestart(input('Please enter the Second number: ')))
+        if operator == "/" and number_2 == 0:
+            print("Can't divide by 0")
+            pass
         if number_2:
             break
 
@@ -84,18 +80,7 @@ def validateNumber(number):
 
 
 def singularsOperators(number):
-    operator = inputExitOrRestart(input(f'''Number is {number}
-    You want apply any of :
-    SQRT for √
-    LOG for log()
-    SIN for sine
-    COS for cosine
-    TAN for Tangent
-    
-    RESTART to Restart
-    NO for not apply any
-    exit for exit
-    ''')).lower()
+    operator = inputExitOrRestart(input(f'''Number is {number} \nYou want apply any of : \n\t"SQRT" for √ \n\t"LOG" for log() \n\t"SIN" for sine \n\t"COS" for cosine \n\t"TAN" for Tangent \n\t"RESTART" to Restart \n\t"NO" for not apply any \n\t"exit" for exit \n\nInsert: ''')).lower()
 
     match operator:
         case "sqrt":
@@ -103,25 +88,24 @@ def singularsOperators(number):
             print(f"√ of {number} is {result}")
             singularsOperators(result)
         case "log":
-            result = math.log(number)
+            result = math.log(number, base=10)
             print(f"log of {number} is {result}")
             singularsOperators(result)
 
         case "sin":
-            result = math.sin(number)
+            result = math.sin(math.radians(number))
             print(f"sin of {number} is {result}")
             singularsOperators(result)
 
         case "cos":
-            result = math.cos(number)
+            result = math.cos(math.radians(number))
             print(f"cos of {number} is {result}")
             singularsOperators(result)
         case "tan":
-            result = math.cos(number)
+            result = math.cos(math.radians(number))
             print(f"cos of {number} is {result}")
             singularsOperators(result)
         case _:
-            print(f"aqui jaz o {number}")
             result = number
 
     return result
