@@ -1,73 +1,48 @@
 '''
-Pretende-se que desenhe e implemente uma pequena aplicação em Python, chamada
-Meu Compressor Básico (MCB).
-
-O MCB deve funcionar da seguinte forma:
-1. Uma lista de palavras únicas deve ser criada a partir de uma string digitada.
-
-Por exemplo, dada a string:
-“A iva e a zita e a ana dizem ola ana ola iva ola”
- _______________________________________________________
- |   a iva e a zita e a ana dizem ola ana ola iva ola  |
- |  0  1  2 3  4   5 6  7    8    9  10  11   12  13   |
- |_____________________________________________________|
-A seguinte lista de palavras únicas deve ser criada:
-
-                        a
-                        iva
-                        e
-                        zita
-                        ana
-                        dizem
-                        ola
-
-Recorde-se que uma lista é rica em métodos (append, insert, remove, index,
-count, clear, etc.) que facilitam o trabalho da programação com esta estrutura.
-2. A string base deve ser completamente destruída.
-3. Finalmente, a partir da lista de palavras únicas deve reconstruir a string original
-(que foi completamente destruída, não podendo haver uma cópia dela em parte
-nenhuma).
-
-4. Naturalmente, no seu algoritmo que vai desenvolver, o programa deve guardar
-as posições de cada palavra repetida de forma a poder reinseri-las nos locais
-apropriados.
+Crie uma lista de 10 elementos, contendo dados à sua escolha, não digitados, mas que
+sejam de diferentes tipos, tais como inteiros, floats e strings.
+A partir desta lista através e através da aplicação do comando type crie três listas, cada
+uma para exclusivamente um diferente tipo de dados.
+Por exemplo:
+Criada a sua lista:
+lista1 = ['gato', 33, 'pardal', 23.7, 'macaco', ‘lia’, 45, 18.35, ‘zebra’, ‘rato’]
+As seguintes três listas devem ser criadas pelo programa:
+lista_strs = ['gato', 'pardal', 'macaco', ‘lia’, ‘zebra’, ‘rato’]
+lista_ints = [33, 45]
+lista_floats = [23.7, 18.35]
 '''
 
-rebuild_string = ""
+lista1 = ['gato', 33, "pardal", 23.7, "macaco", "lia", 45, 18.35, "zebra", "rato", [231]]
+lista_strs = []
+lista_ints = []
+lista_floats = []
 
+for element in lista1:
 
-def list_of_unics_and_positions(string_Entered):
-    words = string_Entered.split()
-    list_unic = []
-    positions = []
+    typeElement = str(type(element))
+    if typeElement == "<class 'float'>":
+        lista_floats.append(element)
 
-    for word in words:
-        if word not in list_unic:
-            list_unic.append(word)
-        positions.append(list_unic.index(word))
+    elif typeElement == "<class 'str'>":
+        lista_strs.append(element)
+    elif typeElement == "<class 'int'>":
+        lista_ints.append(element)
+    else:
+        print(f" '{element}' is not string, float nor int. It's -> {type(element)}")
 
-    return list_unic, positions
+    """ 
+    "This method is more efficient and use less code"
+    
+    if isinstance(element, float):
+        lista_floats.append(element)
+    elif isinstance(element, str):
+        lista_strs.append(element)
+    elif isinstance(element, int):
+        lista_ints.append(element)
+    else:
+        print(f" {element} is not string, float nor int. It's -> {type(element)}")
+    """
 
-
-def reconstruct_String(list_unic, positions):
-    word_Reconstructed = [list_unic[i] for i in positions]
-    return ' '.join(word_Reconstructed)
-
-
-def MCB(string_Entered):
-    # First of create two list, one unics word and second one for the positions
-    list_Unic, positions = list_of_unics_and_positions(string_Entered)
-
-    # Second: Destroy the string original
-    string_Entered = ""
-
-    # Third: Rebuild the string original
-    return reconstruct_String(list_Unic, positions)
-
-
-string_Base = "A iva e a zita e a ana dizem ola ana ola iva ola"
-
-rebuild_String_To_Show = MCB(string_Base)
-string_Base = ""
-
-print(rebuild_String_To_Show)
+print(f"list strings -> {lista_strs}")
+print(f"list integers-> {lista_ints}")
+print(f"list floats -> {lista_floats}")
